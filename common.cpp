@@ -2,10 +2,10 @@
 
 #include <Windows.h>
 #include <string>
-#include <tchar.h>
-#include <algorithm>
+#include <tchar.h>			// _vstprintf_s
+#include <algorithm>		// transform
 
-#pragma comment(lib, "Rpcrt4.lib")
+#pragma comment(lib, "Rpcrt4.lib")		// UuidToString
 
 std::string common::StringPrintf(LPCSTR format, ...)
 {
