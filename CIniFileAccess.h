@@ -9,39 +9,40 @@
 class CIniFileAccess
 {
 public:
+	using Map = const std::map<const std::wstring, const int, std::less<>>;
+public:
 	CIniFileAccess();
-	CIniFileAccess(const std::wstring IniFilePath);
+	CIniFileAccess(const WCHAR* IniFilePath);
 	~CIniFileAccess();
-	void SetIniFilePath(const std::wstring IniFilePath);
-	void SetSectionName(const std::wstring SectionName);
-	int ReadKeyI(const std::wstring KeyName, int default);
-	int ReadKeyI(const std::wstring SectionName, const std::wstring KeyName, int default);
-	BOOL ReadKeyB(const std::wstring KeyName, BOOL default);
-	BOOL ReadKeyB(const std::wstring SectionName, const std::wstring KeyName, BOOL default);
-	int ReadKeyIValueMap(const std::wstring KeyName, int default, const std::map<const std::wstring, const int, std::less<>> ValueMap);
-	int ReadKeyIValueMap(const std::wstring SectionName, const std::wstring KeyName, int default, const std::map<const std::wstring, const int, std::less<>> ValueMap);
-	double ReadKeyF(const std::wstring KeyName, double default);
-	double ReadKeyF(const std::wstring SectionName, const std::wstring KeyName, double default);
-	std::wstring ReadKeyS(const std::wstring KeyName, std::wstring default);
-	std::wstring ReadKeyS(const std::wstring SectionName, const std::wstring KeyName, std::wstring default);
-	int ReadSection(const std::wstring SectionName);
-	int CreateSectionData(void);
+	void SetIniFilePath(const WCHAR* IniFilePath);
+	void SetSectionName(const WCHAR* SectionName);
+	int ReadKeyI(const WCHAR* KeyName, int default);
+	int ReadKeyI(const WCHAR* SectionName, const WCHAR* KeyName, int default);
+	BOOL ReadKeyB(const WCHAR* KeyName, BOOL default);
+	BOOL ReadKeyB(const WCHAR* SectionName, const WCHAR* KeyName, BOOL default);
+	int ReadKeyIValueMap(const WCHAR* KeyName, int default, const Map* ValueMap);
+	int ReadKeyIValueMap(const WCHAR* SectionName, const WCHAR* KeyName, int default, const Map* ValueMap);
+	double ReadKeyF(const WCHAR* KeyName, double default);
+	double ReadKeyF(const WCHAR* SectionName, const WCHAR* KeyName, double default);
+	std::wstring ReadKeyS(const WCHAR* KeyName, const WCHAR* default);
+	std::wstring ReadKeyS(const WCHAR* SectionName, const WCHAR* KeyName, const WCHAR* default);
+	size_t ReadSection(const WCHAR* SectionName);
+	size_t CreateSectionData(void);
 	void DeleteSectionData(void);
 	void Reset(void);
-	bool ReadSectionData(std::wstring *Key, std::wstring *Data);
-	int ReadKeyISectionData(const std::wstring KeyName, int default);
-	BOOL ReadKeyBSectionData(const std::wstring KeyName, BOOL default);
-	int ReadKeyIValueMapSectionData(const std::wstring KeyName, int default, const std::map<const std::wstring, const int, std::less<>> ValueMap);
-	double ReadKeyFSectionData(const std::wstring KeyName, double default);
-	std::wstring ReadKeySSectionData(const std::wstring KeyName, std::wstring default);
+	bool ReadSectionData(std::wstring* Key, std::wstring* Data);
+	int ReadKeyISectionData(const WCHAR* KeyName, int default);
+	BOOL ReadKeyBSectionData(const WCHAR* KeyName, BOOL default);
+	int ReadKeyIValueMapSectionData(const WCHAR* KeyName, int default, const Map* ValueMap);
+	double ReadKeyFSectionData(const WCHAR* KeyName, double default);
+	std::wstring ReadKeySSectionData(const WCHAR* KeyName, const WCHAR* default);
 
 private:
 	std::wstring m_IniFilePath;
 	std::wstring m_SectionName;
-	WCHAR* m_pKeysBuffer;
-	size_t m_KeysSize;
+	WCHAR* m_pKeysBuffer = NULL;
+	size_t m_KeysSize = 0;
 	std::wstring m_KeysSectionName;
-	WCHAR * m_Pointer;
 	std::multimap<std::wstring, std::wstring, std::less<>> m_SectionData;
 	std::multimap<std::wstring, std::wstring, std::less<>>::iterator m_SectionDataIterator;
 };
