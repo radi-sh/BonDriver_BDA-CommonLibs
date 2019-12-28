@@ -67,6 +67,7 @@ namespace common
 	int WStringDecimalToLong(std::wstring Src);
 	double WstringToDouble(std::wstring Src);
 	std::wstring GUIDToWString(GUID guid);
+	void GetModuleFilePath(HMODULE hModule, std::wstring* path, std::wstring* name, std::wstring* ext);
 	std::wstring GetModuleName(HMODULE hModule);
 	std::wstring::size_type WStringSplit(std::wstring * Src, WCHAR Separator, std::wstring * Out);
 }

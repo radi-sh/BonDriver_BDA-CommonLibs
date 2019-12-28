@@ -101,6 +101,30 @@ std::wstring common::GUIDToWString(GUID guid)
 	return  str;
 }
 
+void common::GetModuleFilePath(HMODULE hModule, std::wstring* path, std::wstring* name, std::wstring* ext)
+{
+	// モジュールのファイル名を取得
+	WCHAR szPath[_MAX_PATH + 1] = L"";
+	::GetModuleFileNameW(hModule, szPath, sizeof(szPath) / sizeof(szPath[0]));
+	// フルパスを分解
+	WCHAR szDrive[_MAX_DRIVE] = L"";
+	WCHAR szDir[_MAX_DIR] = L"";
+	WCHAR szFName[_MAX_FNAME] = L"";
+	WCHAR szExt[_MAX_EXT] = L"";
+	::_wsplitpath_s(szPath, szDrive, szDir, szFName, szExt);
+
+	if (path)
+		*path = std::wstring(szDrive) + std::wstring(szDir);
+
+	if (name)
+		*name = std::wstring(szFName);
+
+	if (ext)
+		*ext = std::wstring(szExt);
+
+	return;
+}
+
 std::wstring common::GetModuleName(HMODULE hModule)
 {
 	WCHAR buffer[_MAX_PATH + 1];
