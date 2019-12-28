@@ -8,7 +8,7 @@
 #define SAFE_DELETE_ARRAY(p)	{ if(p) { delete[] (p);     (p)=NULL; } }
 #define SAFE_CLOSE_HANDLE(p)	{ if(p) { ::CloseHandle(p); (p)=NULL; } }
 
-typedef unsigned __int64 QWORD;
+using QWORD = unsigned long long;
 
 extern FILE *g_fpLog;
 
