@@ -27,6 +27,7 @@ public:
 	HRESULT getDisplayName(std::wstring * pName);
 
 	static std::wstring getDeviceInstancePathrFromDisplayName(std::wstring Name);
+	static void disassembleDeviceInstancePath(std::wstring deviceInstancePath, std::wstring* enumerator, std::wstring* deviceId, std::wstring* instanceId);
 	static std::wstring getRegistryName(IBaseFilter * pFilter);
 
 private:

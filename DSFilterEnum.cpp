@@ -153,6 +153,34 @@ std::wstring CDSFilterEnum::getDeviceInstancePathrFromDisplayName(std::wstring d
 	return std::wstring(dip);
 }
 
+void CDSFilterEnum::disassembleDeviceInstancePath(std::wstring deviceInstancePath, std::wstring* enumerator, std::wstring* deviceId, std::wstring* instanceId)
+{
+	// Enumerator
+	std::wstring::size_type len1 = deviceInstancePath.find_first_of(L"\\");
+	std::wstring str1 = deviceInstancePath.substr(0, len1);
+
+	// Žc‚è‚Ì•¶Žš—ñ
+	std::wstring tmp = (len1 == std::wstring::npos) ? L"" : deviceInstancePath.substr(len1 + 1);
+
+	// Device-ID
+	std::wstring::size_type len2 = tmp.find_first_of(L"\\");
+	std::wstring str2 = tmp.substr(0, len2);
+
+	// Instance-ID
+	std::wstring str3 = (len2 == std::wstring::npos) ? L"" : tmp.substr(len2 + 1);
+
+	if (enumerator)
+		*enumerator = str1;
+
+	if (deviceId)
+		*deviceId = str2;
+
+	if (instanceId)
+		*instanceId = str3;
+
+	return;
+}
+
 std::wstring CDSFilterEnum::getRegistryName(IBaseFilter * pFilter)
 {
 	HRESULT hr;
