@@ -9,8 +9,9 @@
 #include <map>
 #include <atlbase.h>
 
-#include <dshow.h>
-#include <bdaiface.h>
+#include <strmif.h>
+
+struct IBDA_Topology;
 
 class CDSFilterEnum
 {

@@ -3,14 +3,18 @@
 //   Implementation of CDSFilterEnum class
 //------------------------------------------------------------------------------
 
-#include "common.h"
-
-#include "DSFilterEnum.h"
-
+// replace
 #include <algorithm>
 
-#include <DShow.h>
+#include <dshow.h>
 
+// IBDA_Topology
+#include <bdaiface.h>
+
+#include "DSFilterEnum.h"
+#include "common.h"
+
+// IID_...
 #pragma comment(lib, "strmiids")
 
 CDSFilterEnum::CDSFilterEnum(CLSID clsid)
