@@ -13,15 +13,14 @@ namespace {
 	};
 }
 
-CIniFileAccess::CIniFileAccess()
+CIniFileAccess::CIniFileAccess() : CIniFileAccess(L"")
 {
-	m_SectionDataIterator = m_SectionData.begin();
 }
 
 CIniFileAccess::CIniFileAccess(const WCHAR* IniFilePath)
 {
+	m_SectionDataIterator = m_SectionData.begin();
 	SetIniFilePath(IniFilePath);
-	CIniFileAccess();
 }
 
 CIniFileAccess::~CIniFileAccess()
@@ -33,14 +32,14 @@ CIniFileAccess::~CIniFileAccess()
 void CIniFileAccess::SetIniFilePath(const WCHAR* IniFilePath)
 {
 	if (IniFilePath) {
-		m_IniFilePath = *IniFilePath;
+		m_IniFilePath = IniFilePath;
 	}
 }
 
 void CIniFileAccess::SetSectionName(const WCHAR* SectionName)
 {
 	if (SectionName) {
-		m_SectionName = *SectionName;
+		m_SectionName = SectionName;
 	}
 }
 
